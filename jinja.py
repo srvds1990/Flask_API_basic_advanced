@@ -1,6 +1,12 @@
  ## Building URL dynamically 
 ## Variable Rule 
 ## Jinja 2 template 
+## It has multiple way to provide the out put data 
+'''
+1. {{explain the variable here }}
+2. {%}
+
+'''
 from flask import Flask,render_template,request
 '''
 It creates the  instance of the  Flask Class
@@ -38,10 +44,23 @@ def submit():
 
     return render_template("form.html")
 
-@app.route("/sucess/<score>")
+@app.route("/sucess/<int::score>")
 def sucess(score):
-    return f'yur score is ' + score
+    res =""
+    if score >=50 :
+        res="Pass"
+    else:
+        res="Fail"
+    return render_template("result.html",results=res)
 
+@app.route("/sucess/<int:score>")
+def sucess_1(score):
+    res =""
+    if score >=50 :
+        res="Pass"
+    else:
+        res="Fail"
+    return render_template("result.html",results=res)
 
 
 
